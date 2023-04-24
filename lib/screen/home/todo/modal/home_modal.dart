@@ -1,6 +1,6 @@
-class homeModal {
-  String? email;
-  int? password;
+class Homemodel
+{
+  String? task,category;
+  Homemodel({this.task, this.category});
 
-  homeModal(this.email, this.password);
 }

@@ -18,7 +18,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: HomePage(),
+        body: TodoScreen(),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(

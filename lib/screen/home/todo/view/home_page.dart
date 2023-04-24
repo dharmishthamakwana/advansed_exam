@@ -1,22 +1,31 @@
-import 'package:flutter/cupertino.dart';
+import 'package:advansed_exam/screen/home/todo/controller/provider/todoProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import '../modal/home_modal.dart';
 
-  @override 
-  State<HomePage> createState() => _HomePageState();
+class TodoScreen extends StatefulWidget {
+  const TodoScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TodoScreen> createState() => _TodoScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
-  TextEditingController txthome = TextEditingController();
-  TextEditingController txtwork = TextEditingController();
-  TextEditingController txtHome = TextEditingController();
+TodoProvider? todoProviderTrue;
+TodoProvider? todoProviderFalse;
+
+class _TodoScreenState extends State<TodoScreen> {
+  TextEditingController txtTask = TextEditingController(text: "Project");
+  TextEditingController txtCat = TextEditingController(text: "Homework");
+
+  TextEditingController editTask = TextEditingController();
+  TextEditingController editCat = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    todoProviderTrue = Provider.of(context, listen: true);
+    todoProviderFalse = Provider.of(context, listen: false);
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -35,138 +44,247 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.white, fontSize: 28)),
                     ),
                   ),
-                  trailing: IconButton(
-                      onPressed: () {
-                        Get.defaultDialog(
-                          title: 'New Task',
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              TextField(
-
-                                decoration: InputDecoration(
-                                 labelText: 'Your Work',
-                              focusedBorder: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              TextField(
-                                decoration: InputDecoration(
-                                  labelText: 'choose category ',
-
-                                  focusedBorder: OutlineInputBorder(),
-                                  enabledBorder: OutlineInputBorder(),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                  trailing: InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text("Cancel"),
+                                  TextField(
+                                    controller: txtCat,
                                   ),
                                   SizedBox(
-                                    width: 30,
+                                    height: 5,
                                   ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text("Save"),
-                                  )
+                                  TextField(
+                                    controller: txtTask,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Homemodel h1 = Homemodel(
+                                          task: txtTask.text,
+                                          category: txtCat.text);
+                                      todoProviderTrue!.taskList.add(h1);
+                                      setState(() {});
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Add"),
+                                  ),
                                 ],
-                              )
-                            ],
-                          ),
+                              ),
+                            );
+                          },
                         );
                       },
-                      icon: Icon(Icons.add),
-                      color: Colors.white),
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 30,
+                      )),
                 ),
               ),
               Container(
-                width: double.infinity,
+                color: Colors.grey.shade300,
                 height: 50,
-                color: Colors.grey.shade200,
                 child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "TODO(3)",
-                      style: TextStyle(fontSize: 20),
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: txthome,
-                  decoration: InputDecoration(
-                    label: Text("home"),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
-                  ),
+                  alignment: Alignment.centerLeft,
+                  child: Text("ToDo (${todoProviderTrue!.taskList.length})",
+                      style: TextStyle(fontSize: 20)),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: txtwork,
-                  decoration: InputDecoration(
-                    label: Text("work"),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: txtHome,
-                  decoration: InputDecoration(
-                    label: Text("Home"),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
               ),
               Container(
+                height: 300,
                 width: double.infinity,
-                height: 50,
-                color: Colors.grey.shade200,
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Done(2)",
-                      style: TextStyle(fontSize: 20),
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: txthome,
-                  decoration: InputDecoration(
-                    label: Text("home"),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
+                color: Colors.teal.shade50,
+                child: ListView.builder(
+                  itemBuilder: (context, index) => Container(
+                    margin: EdgeInsets.only(top: 5, bottom: 5),
+                    height: 90,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${todoProviderTrue!.taskList[index].category}",
+                                style: TextStyle(color: Colors.grey.shade400),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "${todoProviderTrue!.taskList[index].task}",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          InkWell(
+                              onTap: () {
+                                todoProviderTrue!.doneList.add(Homemodel(
+                                    category: todoProviderTrue!
+                                        .taskList[index].category,
+                                    task: todoProviderTrue!
+                                        .taskList[index].task));
+                                setState(() {});
+                              },
+                              child: Icon(
+                                Icons.done,
+                                color: Colors.teal.shade600,
+                              )),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextField(
+                                            controller: editCat,
+                                            decoration: InputDecoration(
+                                              hintText:
+                                                  "${todoProviderTrue!.taskList[index].category}",
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          TextField(
+                                            controller: editTask,
+                                            decoration: InputDecoration(
+                                              hintText:
+                                                  "${todoProviderTrue!.taskList[index].task}",
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Colors.teal),
+                                              onPressed: () {
+                                                todoProviderTrue!
+                                                    .taskList[index]
+                                                    .category = editCat.text;
+                                                todoProviderTrue!
+                                                    .taskList[index]
+                                                    .task = editTask.text;
+                                                setState(() {});
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Edit"))
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              )),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                todoProviderTrue!.taskList.removeAt(index);
+                                setState(() {});
+                              },
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              )),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
+                  itemCount: todoProviderTrue!.taskList.length,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: txtwork,
-                  decoration: InputDecoration(
-                    label: Text("work"),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
+              Container(
+                color: Colors.grey.shade300,
+                height: 50,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(" Done (${todoProviderTrue!.taskList.length})",
+                      style: TextStyle(fontSize: 20)),
+                ),
+              ),
+              Container(
+                height: 300,
+                width: double.infinity,
+                color: Colors.teal.shade50,
+                child: ListView.builder(
+                  itemBuilder: (context, index) => Container(
+                    margin: EdgeInsets.only(top: 5, bottom: 5),
+                    padding: EdgeInsets.all(10),
+                    height: 90,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${todoProviderTrue!.doneList[index].category}",
+                          style: TextStyle(color: Colors.grey.shade400),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "${todoProviderTrue!.doneList[index].task}",
+                          style: TextStyle(color: Colors.black, fontSize: 22),
+                        ),
+                      ],
+                    ),
                   ),
+                  itemCount: todoProviderTrue!.doneList.length,
                 ),
               ),
             ],
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedLabelStyle: TextStyle(color: Colors.teal),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_filled,
+                color: Colors.teal,
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.date_range,
+                  color: Colors.teal,
+                ),
+                label: "Date"),
+          ],
         ),
       ),
     );

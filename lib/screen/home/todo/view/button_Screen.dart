@@ -17,24 +17,27 @@ class _BottonScreenState extends State<BottonScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("AllApp"),
-
         ),
         body: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
                 onPressed: () {
                   Get.toNamed('pattern');
                 },
                 child: Text("pattern"),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
                 onPressed: () {
                   Get.toNamed('todo');
                 },
                 child: Text("todo"),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
                 onPressed: () {
                   Get.toNamed('api');
                 },

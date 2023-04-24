@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final coronaModal = coronaModalFromJson(jsonString);
+//     final homeModel = homeModelFromJson(jsonString);
 
 import 'dart:convert';
 
-CoronaModal coronaModalFromJson(String str) => CoronaModal.fromJson(json.decode(str));
+HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 
-String coronaModalToJson(CoronaModal data) => json.encode(data.toJson());
+String homeModelToJson(HomeModel data) => json.encode(data.toJson());
 
-class CoronaModal {
-  CoronaModal({
+class HomeModel {
+  HomeModel({
     required this.countriesStat,
     required this.statisticTakenAt,
     required this.worldTotal,
@@ -19,7 +19,7 @@ class CoronaModal {
   DateTime statisticTakenAt;
   WorldTotal worldTotal;
 
-  factory CoronaModal.fromJson(Map<String, dynamic> json) => CoronaModal(
+  factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
     countriesStat: List<CountriesStat>.from(json["countries_stat"].map((x) => CountriesStat.fromJson(x))),
     statisticTakenAt: DateTime.parse(json["statistic_taken_at"]),
     worldTotal: WorldTotal.fromJson(json["world_total"]),

@@ -1,3 +1,4 @@
+import 'package:advansed_exam/screen/home/todo/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,9 +46,12 @@ class _SignInPageState extends State<SignInPage> {
                               focusedBorder: const OutlineInputBorder(),
                               suffixIcon: Icon(
                                 Icons.email,
-                                color: Theme.of(context).primaryColorDark,
+                                color: Colors.teal,
                               ),
-                              label: const Text("Username"),
+                              label: const Text(
+                                "Username",
+                                style: TextStyle(color: Colors.teal),
+                              ),
                             ),
                           ),
                         ),
@@ -64,13 +68,16 @@ class _SignInPageState extends State<SignInPage> {
                               focusedBorder: const OutlineInputBorder(),
                               enabledBorder: const OutlineInputBorder(),
                               enabled: true,
-                              label: const Text("Password"),
+                              label: const Text(
+                                "Password",
+                                style: TextStyle(color: Colors.teal),
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _passwordVisible == true
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: Theme.of(context).primaryColorDark,
+                                  color: Colors.teal,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -91,7 +98,8 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                             Text(
                               homeController.note2,
-                              style: const TextStyle(color: Colors.red, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 16),
                             ),
                           ],
                         ),
@@ -112,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
                                 alreadylogin(true);
                                 createusershe(homeController.txtuseremail.text,
                                     homeController.txtuserpassword.text);
-                                Get.toNamed('bottam');
+                                Get.toNamed('home');
                               } else {
                                 homeController.note2 = "Wrong information";
                               }
@@ -123,8 +131,10 @@ class _SignInPageState extends State<SignInPage> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                gradient:  LinearGradient(
-                                    colors: [Colors.teal, Colors.teal.shade200,]),
+                                gradient: LinearGradient(colors: [
+                                  Colors.teal,
+                                  Colors.teal.shade200,
+                                ]),
                               ),
                               child: const Text(
                                 "Sign in",
@@ -158,7 +168,7 @@ class _SignInPageState extends State<SignInPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 18,
-                                      color: Colors.blue,
+                                      color: Colors.teal,
                                       decoration: TextDecoration.underline),
                                 ),
                               ),

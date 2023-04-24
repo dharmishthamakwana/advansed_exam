@@ -1,7 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:advansed_exam/utiles/api_helper/helperApi.dart';
+import 'package:flutter/widgets.dart';
 
-class CoronaController extends GetxController {
-  TextEditingController cityName = TextEditingController();
-  RxString city = "surat".obs;
+import '../modal/corona_modal.dart';
+
+class ApiProvider extends ChangeNotifier {
+  HomeModel? homeModel;
+
+  Future<void> JsonParsing() async {
+    ApiHelper apiHelper = ApiHelper();
+    homeModel = await apiHelper.GetApiCall();
+    notifyListeners();
+  }
 }

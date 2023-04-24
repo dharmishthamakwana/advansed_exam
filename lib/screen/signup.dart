@@ -34,20 +34,20 @@ class _SignupPageState extends State<SignupPage> {
                     padding: const EdgeInsets.only(top: 40),
                     child: Column(
                       children: [
-                        const Text(
+                        Text(
                           "Create",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 60,
-                            color: Color(0xff4b74a6),
+                            color: Colors.teal.shade900,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "account",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
-                            color: Color(0xff4b74a6),
+                            color: Colors.teal.shade900,
                           ),
                         ),
                         const SizedBox(
@@ -65,9 +65,9 @@ class _SignupPageState extends State<SignupPage> {
                               enabledBorder: const OutlineInputBorder(),
                               suffixIcon: Icon(
                                 Icons.email,
-                                color: Theme.of(context).primaryColorDark,
+                                color: Colors.teal,
                               ),
-                              label: const Text("E-mail"),
+                              label: const Text("E-mail",style: TextStyle(color: Colors.teal,)),
                             ),
                           ),
                         ),
@@ -84,13 +84,13 @@ class _SignupPageState extends State<SignupPage> {
                               enabled: true,
                               focusedBorder: const OutlineInputBorder(),
                               enabledBorder: const OutlineInputBorder(),
-                              label: const Text("Password"),
+                              label: const Text("Password",style: TextStyle(color: Colors.teal)),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _passwordVisible == true
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: Theme.of(context).primaryColorDark,
+                                  color: Colors.teal,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -139,8 +139,10 @@ class _SignupPageState extends State<SignupPage> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                gradient: const LinearGradient(
-                                    colors: [Color(0xff4b74a6), Colors.blue]),
+                                gradient: LinearGradient(colors: [
+                                  Colors.teal,
+                                  Colors.teal.shade100,
+                                ]),
                               ),
                               child: const Text(
                                 "Sign up",
@@ -174,7 +176,7 @@ class _SignupPageState extends State<SignupPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 18,
-                                      color: Colors.blue,
+                                      color: Colors.teal,
                                       decoration: TextDecoration.underline),
                                 ),
                               ),
