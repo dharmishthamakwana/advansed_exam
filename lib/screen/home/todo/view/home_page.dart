@@ -1,8 +1,8 @@
-import 'package:advansed_exam/screen/home/todo/controller/provider/todoProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../modal/home_modal.dart';
+import '../provider/todoProvider.dart';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({Key? key}) : super(key: key);

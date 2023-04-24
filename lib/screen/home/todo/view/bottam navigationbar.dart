@@ -12,7 +12,6 @@ class BottomBarPage extends StatefulWidget {
 }
 
 class _BottomBarPageState extends State<BottomBarPage> {
-  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

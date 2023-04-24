@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../modal/home_modal.dart';
+import '../modal/home_modal.dart';
 
 class TodoProvider extends ChangeNotifier
 {
