@@ -16,10 +16,20 @@ class _BottonScreenState extends State<BottonScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.teal.shade900,
           title: Text("AllApp"),
         ),
-        body: Center(
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Colors.teal.shade700,
+            Colors.teal.shade400,
+            Colors.teal.shade100
+          ])),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(

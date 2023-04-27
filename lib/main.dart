@@ -1,6 +1,8 @@
+import 'package:advansed_exam/screen/home/corona/controller/corona_controller.dart';
+import 'package:advansed_exam/screen/home/corona/view/coronaDetail_screen.dart';
 import 'package:advansed_exam/screen/home/corona/view/corona_Screen.dart';
 import 'package:advansed_exam/screen/home/pattern/view/home_Screen.dart';
-import 'package:advansed_exam/screen/home/todo/controller/provider/todoProvider.dart';
+import 'package:advansed_exam/screen/home/todo/provider/todoProvider.dart';
 import 'package:advansed_exam/screen/home/todo/view/bottam%20navigationbar.dart';
 import 'package:advansed_exam/screen/home/todo/view/button_Screen.dart';
 import 'package:advansed_exam/screen/home/todo/view/todo_screen.dart';
@@ -18,6 +20,9 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => TodoProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ApiProvider(),
         )
       ],
       child: GetMaterialApp(
@@ -31,6 +36,7 @@ void main() {
           'home': (p0) => TodoScreen(),
           'bottam': (p0) => BottomBarPage(),
           'api': (p0) => ApiScreen(),
+          'data':(p0) => DataScreen(),
         },
       ),
     ),

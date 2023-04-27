@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../modal/corona_modal.dart';
 
-class ApiProvider extends ChangeNotifier {
+class CoronaProvider extends ChangeNotifier {
   HomeModel? homeModel;
 
   Future<void> JsonParsing() async {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/corona_controller.dart';
+import '../Provider/home_provider.dart';
 
 class ApiScreen extends StatefulWidget {
   const ApiScreen({Key? key}) : super(key: key);
@@ -12,54 +12,81 @@ class ApiScreen extends StatefulWidget {
 }
 
 class _ApiScreenState extends State<ApiScreen> {
-  ApiProvider? apiProviderT;
-  ApiProvider? apiProviderF;
+  CoronaProvider? apiProviderTrue;
+  CoronaProvider? apiProviderFalse;
 
   @override
   void initState() {
     super.initState();
-    Provider.of<ApiProvider>(context, listen: false).JsonParsing();
+    Provider.of<CoronaProvider>(context, listen: false).JsonParsing();
   }
 
   @override
   Widget build(BuildContext context) {
-    apiProviderF = Provider.of<ApiProvider>(context, listen: false);
-    apiProviderT = Provider.of<ApiProvider>(context, listen: true);
+    apiProviderFalse = Provider.of<CoronaProvider>(context, listen: false);
+    apiProviderTrue = Provider.of<CoronaProvider>(context, listen: true);
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.grey.shade100,
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            title: Text("Corona Api"),
-          ),
-          body: (apiProviderT!.homeModel == null)
-              ? Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                  itemBuilder: (context, index) => Container(
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.pushNamed(context, 'data', arguments: index);
-                      },
-                      title: Text(
-                          "Country Name : ${apiProviderT!.homeModel!.countriesStat[index].countryName}"),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Total Cases'),
-                          Text(
-                              "${apiProviderT!.homeModel!.countriesStat[index].cases}"),
-                        ],
+        backgroundColor: Colors.grey.shade100,
+        appBar: AppBar(
+          backgroundColor: Colors.cyan.shade900,
+          title: Text("Corona Api"),
+        ),
+        body: (apiProviderTrue!.homeModel == null)
+            ? Center(child: CircularProgressIndicator())
+            : Stack(
+                children: [
+                  Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      child: Image(
+                        image: AssetImage(
+                          "assets/image/background.jpg",
+                        ),
+                        fit: BoxFit.cover,
+                      )),
+                  ListView.builder(
+                    itemBuilder: (context, index) => Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black,width: 3),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.pushNamed(context, 'data',
+                              arguments: index);
+                        },
+                        title: Text(
+                          "Country Name : ${apiProviderTrue!.homeModel!.Countries[index].countryName}",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Total Cases',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "${apiProviderTrue!.homeModel!.Countries[index].cases}",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
+                    itemCount: apiProviderTrue!.homeModel!.Countries.length,
                   ),
-                  itemCount: apiProviderT!.homeModel!.countriesStat.length,
-                )),
+                ],
+              ),
+      ),
     );
   }
 }

@@ -10,23 +10,23 @@ String homeModelToJson(HomeModel data) => json.encode(data.toJson());
 
 class HomeModel {
   HomeModel({
-    required this.countriesStat,
+    required this.Countries,
     required this.statisticTakenAt,
     required this.worldTotal,
   });
 
-  List<CountriesStat> countriesStat;
+  List<CountriesStat> Countries;
   DateTime statisticTakenAt;
   WorldTotal worldTotal;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
-    countriesStat: List<CountriesStat>.from(json["countries_stat"].map((x) => CountriesStat.fromJson(x))),
+    Countries: List<CountriesStat>.from(json["countries_stat"].map((x) => CountriesStat.fromJson(x))),
     statisticTakenAt: DateTime.parse(json["statistic_taken_at"]),
     worldTotal: WorldTotal.fromJson(json["world_total"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "countries_stat": List<dynamic>.from(countriesStat.map((x) => x.toJson())),
+    "countries_stat": List<dynamic>.from(Countries.map((x) => x.toJson())),
     "statistic_taken_at": statisticTakenAt.toIso8601String(),
     "world_total": worldTotal.toJson(),
   };
