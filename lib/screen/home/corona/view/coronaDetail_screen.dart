@@ -18,7 +18,10 @@ class _DataScreenState extends State<DataScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int index = ModalRoute.of(context)!.settings.arguments as int;
+    int index = ModalRoute
+        .of(context)!
+        .settings
+        .arguments as int;
     apiProviderFalse = Provider.of<CoronaProvider>(context, listen: false);
     apiProviderTrue = Provider.of<CoronaProvider>(context, listen: true);
     return SafeArea(
@@ -39,56 +42,64 @@ class _DataScreenState extends State<DataScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "Country : ${apiProviderTrue!.homeModel!.Countries[index].countryName}",
+                "Country : ${apiProviderTrue!.homeModel!.Countries[index]
+                    .countryName}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "Total Cases : ${apiProviderTrue!.homeModel!.Countries[index].cases}",
+                "Total Cases : ${apiProviderTrue!.homeModel!.Countries[index]
+                    .cases}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "New Cases : ${apiProviderTrue!.homeModel!.Countries[index].newCases}",
+                "New Cases : ${apiProviderTrue!.homeModel!.Countries[index]
+                    .newCases}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "Active Cases : ${apiProviderTrue!.homeModel!.Countries[index].activeCases}",
+                "Active Cases : ${apiProviderTrue!.homeModel!.Countries[index]
+                    .activeCases}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "Deaths : ${apiProviderTrue!.homeModel!.Countries[index].deaths}",
+                "Deaths : ${apiProviderTrue!.homeModel!.Countries[index]
+                    .deaths}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "SeriousCritical Cases: ${apiProviderTrue!.homeModel!.Countries[index].seriousCritical}",
+                "SeriousCritical Cases: ${apiProviderTrue!.homeModel!
+                    .Countries[index].seriousCritical}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "Total Tests: ${apiProviderTrue!.homeModel!.Countries[index].totalTests}",
+                "Total Tests: ${apiProviderTrue!.homeModel!.Countries[index]
+                    .totalTests}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
               ),
               Text(
-                "TotalRecovered Cases: ${apiProviderTrue!.homeModel!.Countries[index].totalRecovered}",
+                "TotalRecovered Cases: ${apiProviderTrue!.homeModel!
+                    .Countries[index].totalRecovered}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,

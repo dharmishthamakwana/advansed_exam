@@ -1,4 +1,4 @@
-import 'package:advansed_exam/screen/home/corona/controller/corona_controller.dart';
+import 'package:advansed_exam/screen/home/corona/Provider/home_provider.dart';
 import 'package:advansed_exam/screen/home/corona/view/coronaDetail_screen.dart';
 import 'package:advansed_exam/screen/home/corona/view/corona_Screen.dart';
 import 'package:advansed_exam/screen/home/pattern/view/home_Screen.dart';
@@ -22,7 +22,7 @@ void main() {
           create: (context) => TodoProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => ApiProvider(),
+          create: (context) => CoronaProvider(),
         )
       ],
       child: GetMaterialApp(
