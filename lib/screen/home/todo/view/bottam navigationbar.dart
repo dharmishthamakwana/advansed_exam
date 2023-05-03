@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../controller/home_controller.dart';
-import 'home_page.dart';
+import 'todo.dart';
 
 class BottomBarPage extends StatefulWidget {
   const BottomBarPage({Key? key}) : super(key: key);

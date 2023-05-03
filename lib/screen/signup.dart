@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../utiles/sherd/sher.dart';
-import 'home/todo/controller/home_controller.dart';
+import 'home/controller/home_controller.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);

@@ -30,7 +30,7 @@ class _ApiScreenState extends State<ApiScreen> {
         backgroundColor: Colors.grey.shade100,
         appBar: AppBar(
           backgroundColor: Colors.cyan.shade900,
-          title: Text("Corona Api"),
+          title: Text("Corona APP"),
         ),
         body: (apiProviderTrue!.homeModel == null)
             ? Center(child: CircularProgressIndicator())

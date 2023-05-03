@@ -1,6 +1,7 @@
-import 'package:advansed_exam/screen/home/todo/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../controller/home_controller.dart';
 
 class PatternPage extends StatefulWidget {
   const PatternPage({Key? key}) : super(key: key);

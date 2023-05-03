@@ -45,48 +45,49 @@ class _TodoScreenState extends State<TodoScreen> {
                     ),
                   ),
                   trailing: InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextField(
-                                    controller: txtCat,
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  TextField(
-                                    controller: txtTask,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Homemodel h1 = Homemodel(
-                                          task: txtTask.text,
-                                          category: txtCat.text);
-                                      todoProviderTrue!.taskList.add(h1);
-                                      setState(() {});
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text("Add"),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 30,
-                      )),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                TextField(
+                                  controller: txtCat,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                TextField(
+                                  controller: txtTask,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Homemodel h1 = Homemodel(
+                                        task: txtTask.text,
+                                        category: txtCat.text);
+                                    todoProviderTrue!.taskList.add(h1);
+                                    setState(() {});
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Add"),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
                 ),
               ),
               Container(

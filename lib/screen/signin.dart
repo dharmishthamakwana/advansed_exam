@@ -1,9 +1,8 @@
-import 'package:advansed_exam/screen/home/todo/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utiles/sherd/sher.dart';
-import 'home/todo/controller/home_controller.dart';
+import 'home/controller/home_controller.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);

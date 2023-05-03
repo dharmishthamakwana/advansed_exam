@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-
   RxDouble value = 0.0.obs;
   RxList pattern = [].obs;
   TextEditingController txtemail = TextEditingController();
